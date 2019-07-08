@@ -60,7 +60,6 @@ for ep in range(epochs):
     if (ep + 1) % 5 == 0:
         torch.save(model.state_dict(), 'model' + str(ep + 1) + '.ckpt')
 
-torch.save(model.state_dict(), 'model.ckpt')
 
 model.eval()
 with torch.no_grad():

@@ -25,7 +25,8 @@ class IndexTracker(object):
         self.update()
 
     def update(self):
-        self.im = ax.imshow(self.imgs[self.idx])
+        img = io.imread(self.imgs[self.idx])
+        self.im = ax.imshow(img)
         ax.set_title(self.msgs[self.idx])
         ax.set_ylabel('slice %s' % self.idx)
         self.im.axes.figure.canvas.draw()
@@ -36,9 +37,9 @@ dataRoot = '../_datasets/_ExDark/'
 testPath = 'TestList.csv'
 predPath = 'PredList.csv'
 
-preds = pd.read_csv(predPath)
-names = pd.read_csv(testPath, usecols=[0]) 
-labels = pd.read_csv(testPath, usecols=[1])
+preds = pd.read_csv(predPath, header=None)
+names = pd.read_csv(testPath, usecols=[0], header=None) 
+labels = pd.read_csv(testPath, usecols=[1], header=None)
 
 preds = np.array(preds).T[0]
 names = np.array(names).T[0]
@@ -48,9 +49,10 @@ wrongImgs = []
 errorMsgs = []
 for i in range(len(preds)):
     if preds[i] != labels[i]:
-        img = io.imread(dataRoot + names[i])
+        img = dataRoot + names[i]
+        # img = io.imread(dataRoot + names[i])
         wrongImgs.extend([img])
-        errorMsgs.extend(['Wrong prediction: ' + items[preds[i]] + ' (' + items[labels[i]] + ')'])
+        errorMsgs.extend(['Prediction: ' + items[preds[i]] + '  (Label: ' + items[labels[i]] + ')'])
 
 fig, ax = plt.subplots(1, 1)
 
@@ -63,3 +65,9 @@ tracker = IndexTracker(ax, imgs, msgs)
 
 fig.canvas.mpl_connect('scroll_event', tracker.onscroll)
 plt.show()
+
+# for i in range(len(imgs)):
+#     img = io.imread(imgs[i])
+#     ax.imshow(img)
+#     ax.set_title(msgs[i])
+#     fig.savefig('../_result/_ExDark/' + str(i) + '.jpg')

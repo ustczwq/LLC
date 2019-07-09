@@ -11,7 +11,7 @@ from torch.utils.data import Dataset, DataLoader
 class LLCDataset(Dataset):
     
     def __init__(self, csvPath, rootDir, transform=None):
-        self.imgs = pd.read_csv(csvPath)
+        self.imgs = pd.read_csv(csvPath, header=None)
         self.rootDir = rootDir
         self.transform = transform
 

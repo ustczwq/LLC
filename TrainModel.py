@@ -39,9 +39,10 @@ criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=lr)
 
 for ep in range(epochs):
-    if ep > 10:
+    if ep == 10:
         lr = 1e-5
         optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+
     for i, (imgs, labels) in enumerate(trainLoader):
         imgs = imgs.to(device)
         labels = labels.to(device)

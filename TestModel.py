@@ -30,7 +30,7 @@ model = models.resnet50(pretrained=True)
 model.fc = nn.Linear(model.fc.in_features, 12)
 model = model.to(device)
 
-model.load_state_dict(torch.load('model20.ckpt'))
+model.load_state_dict(torch.load('./trainedModels/model20.ckpt'))
 model.eval()
 
 predList = [] 
@@ -55,7 +55,7 @@ with torch.no_grad():
 
 print(len(predList))
 
-with open('PredList.csv', 'w') as f:
+with open('./results/PredList.csv', 'w') as f:
     w = csv.writer(f)    
     for l in predList:
         w.writerow([l])

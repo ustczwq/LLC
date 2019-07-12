@@ -35,7 +35,7 @@ items = ['Bicycle', 'Boat', 'Bottle', 'Bus', 'Car', 'Cat', 'Chair', 'Cup', 'Dog'
 
 dataRoot = '../_datasets/_ExDark/'
 testPath = 'TestList.csv'
-predPath = 'PredList.csv'
+predPath = './results/PredList.csv'
 
 preds = pd.read_csv(predPath, header=None)
 names = pd.read_csv(testPath, usecols=[0], header=None) 
@@ -70,4 +70,4 @@ plt.show()
 #     img = io.imread(imgs[i])
 #     ax.imshow(img)
 #     ax.set_title(msgs[i])
-#     fig.savefig('../_result/_ExDark/' + str(i) + '.jpg')
+#     fig.savefig('../_result/_ExDark/Errors/' + str(i) + '.jpg')

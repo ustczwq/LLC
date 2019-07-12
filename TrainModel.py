@@ -39,7 +39,7 @@ criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=lr)
 
 for ep in range(epochs):
-    if ep == 10:
+    if ep == 9:
         lr = 1e-5
         optimizer = torch.optim.Adam(model.parameters(), lr=lr)
 
@@ -59,7 +59,7 @@ for ep in range(epochs):
             print("Epoch [{}/{}], Step [{}], Loss: {:.6f}".format(ep + 1, epochs, i + 1, loss.item())) 
 
     if (ep + 1) % 5 == 0:
-        torch.save(model.state_dict(), 'model' + str(ep + 1) + '.ckpt')
+        torch.save(model.state_dict(), './trainedModels/model' + str(ep + 1) + '.ckpt')
 
 
 model.eval()

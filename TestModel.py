@@ -21,7 +21,7 @@ transform = transforms.Compose([
     ])
 
 testData = LLCDataset(csvPath='TestList.csv', 
-                        rootDir='../_datasets/_ExDark/', 
+                        rootDir='../_datasets/ExDark/', 
                         transform=transform)
 
 testLoader = DataLoader(dataset=testData, batch_size=64)
@@ -53,9 +53,9 @@ with torch.no_grad():
 
     print('Test Accuracy: {:.3f} %'.format(100 * correct / total))
 
-print(len(predList))
+print(total, total - correct)
 
-with open('./results/PredList.csv', 'w') as f:
+with open('./results/mdPred.csv', 'w') as f:
     w = csv.writer(f)    
     for l in predList:
         w.writerow([l])

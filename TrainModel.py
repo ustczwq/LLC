@@ -20,11 +20,11 @@ transform = transforms.Compose([
     ])
 
 trainData = LLCDataset(csvPath='TrainList.csv', 
-                        rootDir='../_datasets/_ExDark/', 
+                        rootDir='../_datasets/ExDark/', 
                         transform=transform)
 
 testData = LLCDataset(csvPath='TestList.csv',  
-                        rootDir='../_datasets/_ExDark/', 
+                        rootDir='../_datasets/ExDark/', 
                         transform=transform)
 
 trainLoader = DataLoader(dataset=trainData, batch_size=64, shuffle=True)
